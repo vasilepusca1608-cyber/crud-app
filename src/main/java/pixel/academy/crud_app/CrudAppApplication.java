@@ -4,6 +4,8 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import pixel.academy.crud_app.dao.StudentDAO;
+import pixel.academy.crud_app.entity.Student;
 
 @SpringBootApplication
 public class CrudAppApplication {
@@ -12,12 +14,21 @@ public class CrudAppApplication {
 		SpringApplication.run(CrudAppApplication.class, args);
 	}
 
+		@Bean
+				public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
+			return  runner-> {
+				createStudent(studentDAO);
+			};
+		}
+		private void createStudent(StudentDAO studentDAO){
+		// create an object Student
+			System.out.println("Creating new student object ...");
+			Student newStudent = new Student("John", "Doe","john@pixelacademy.md");
 
-	@Bean
-	public CommandLineRunner commandLineRunner(String[] args) {
-
-		return runner -> {
-			System.out.println("Hello, world!");
-		};
+			//save the Student object in the database using DAO
+			System.out.println("Saving the student ...");
+			studentDAO.save(newStudent);
+			//display the saved student ID
+			System.out.println("Saved student. Generated id:" + newStudent.getId());
 	}
 }
