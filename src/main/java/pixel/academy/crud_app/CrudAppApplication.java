@@ -14,21 +14,21 @@ public class CrudAppApplication {
 		SpringApplication.run(CrudAppApplication.class, args);
 	}
 
-		@Bean
-				public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
-			return  runner-> {
-				createStudent(studentDAO);
-			};
-		}
-		private void createStudent(StudentDAO studentDAO){
-		// create an object Student
-			System.out.println("Creating new student object ...");
-			Student newStudent = new Student("John", "Doe","john@pixelacademy.md");
+	@Bean
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
+		return  runner-> {
+			createStudent(studentDAO);
+		};
+	}
 
-			//save the Student object in the database using DAO
-			System.out.println("Saving the student ...");
-			studentDAO.save(newStudent);
-			//display the saved student ID
-			System.out.println("Saved student. Generated id:" + newStudent.getId());
+	private void createStudent(StudentDAO studentDAO){// create an object Student
+		System.out.println("Creating new student object ...");
+		Student newStudent = new Student("John", "Doe","john@pixelacademy.md");
+
+		//save the Student object in the database using DAO
+		System.out.println("Saving the student ...");
+		studentDAO.save(newStudent);
+		//display the saved student ID
+		System.out.println("Saved student. Generated id:" + newStudent.getId());
 	}
 }
