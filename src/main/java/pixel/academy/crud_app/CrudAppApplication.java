@@ -14,21 +14,36 @@ public class CrudAppApplication {
 		SpringApplication.run(CrudAppApplication.class, args);
 	}
 
-		@Bean
-				public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
-			return  runner-> {
-				createStudent(studentDAO);
-			};
-		}
-		private void createStudent(StudentDAO studentDAO){
-		// create an object Student
-			System.out.println("Creating new student object ...");
-			Student newStudent = new Student("John", "Doe","john@pixelacademy.md");
+	@Bean
+	public CommandLineRunner commandLineRunner(StudentDAO studentDAO){
+		return  runner-> {
+			//createStudent(studentDAO);
 
-			//save the Student object in the database using DAO
-			System.out.println("Saving the student ...");
-			studentDAO.save(newStudent);
-			//display the saved student ID
-			System.out.println("Saved student. Generated id:" + newStudent.getId());
+			createMultipleStudents(studentDAO);
+
+		};
+	}
+
+	private void createStudent(StudentDAO studentDAO){// create an object Student
+		System.out.println("Creating new student object ...");
+		Student newStudent = new Student("John", "Doe","john@pixelacademy.md");
+
+		//save the Student object in the database using DAO
+		System.out.println("Saving the student ...");
+		studentDAO.save(newStudent);
+		//display the saved student ID
+		System.out.println("Saved student. Generated id:" + newStudent.getId());
+	}
+	private void createMultipleStudents(StudentDAO studentDAO) {
+		//cream mai multi studenti
+    System.out.println("Creating 3 student objects ...");
+	Student newStudent1 = new Student("Andrei","Munteanu","andrei@pixelacademy");
+	Student newStudent2 = new Student("Iulia","Munteanu","andrei@pixelacademy");
+	Student newStudent3 = new Student("Maira","Munteanu","andrei@pixelacademy");
+
+	System.out.println("Saving the students ...");
+	studentDAO.save(newStudent1);
+	studentDAO.save(newStudent2);
+	studentDAO.save(newStudent3);
 	}
 }
