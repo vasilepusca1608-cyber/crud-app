@@ -19,9 +19,31 @@ public class CrudAppApplication {
 		return  runner-> {
 			//createStudent(studentDAO);
 
-			createMultipleStudents(studentDAO);
+			readStudent(studentDAO);
 
 		};
+	}
+
+	private void readStudent(StudentDAO studentDAO) {
+
+		//create a Student object
+		System.out.println("Creating new student object ...");
+		Student newStudent = new Student("Mircea","Popescu","mirceap@pixel.academy");
+
+		//save the student in the database
+		System.out.println("Saving the student ...");
+		studentDAO.save(newStudent);
+
+		//display the ID of the saved student
+		int theId = newStudent.getId();
+		System.out.println("Saved student. Genereated id: " + theId);
+
+		//retrieve the student based on the ID (PK)
+		System.out.println("Retrieving student with id: " + theId);
+		Student myStudent = studentDAO.findById(theId);
+
+		//display the student's details
+		System.out.println("Found the student: " + myStudent);
 	}
 
 	private void createStudent(StudentDAO studentDAO){// create an object Student
@@ -34,16 +56,19 @@ public class CrudAppApplication {
 		//display the saved student ID
 		System.out.println("Saved student. Generated id:" + newStudent.getId());
 	}
+	
 	private void createMultipleStudents(StudentDAO studentDAO) {
 		//cream mai multi studenti
-    System.out.println("Creating 3 student objects ...");
-	Student newStudent1 = new Student("Andrei","Munteanu","andrei@pixelacademy");
-	Student newStudent2 = new Student("Iulia","Munteanu","andrei@pixelacademy");
-	Student newStudent3 = new Student("Maira","Munteanu","andrei@pixelacademy");
+    	System.out.println("Creating 3 student objects ...");
+		Student newStudent1 = new Student("Andrei","Munteanu","andrei@pixelacademy");
+		Student newStudent2 = new Student("Iulia","Munteanu","andrei@pixelacademy");
+		Student newStudent3 = new Student("Maira","Munteanu","andrei@pixelacademy");
 
-	System.out.println("Saving the students ...");
-	studentDAO.save(newStudent1);
-	studentDAO.save(newStudent2);
-	studentDAO.save(newStudent3);
+		System.out.println("Saving the students ...");
+		studentDAO.save(newStudent1);
+		studentDAO.save(newStudent2);
+		studentDAO.save(newStudent3);
 	}
+	
+	
 }
