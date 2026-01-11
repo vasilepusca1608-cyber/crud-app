@@ -21,6 +21,7 @@ public class CrudAppApplication {
 		return  runner-> {
 			//createStudent(studentDAO);
 
+			//createMultipleStudents(studentDAO);
 			//readStudent(studentDAO);
 			//queryForStudents(studentDAO);
 			//queryForStudentsByLastName(studentDAO);
