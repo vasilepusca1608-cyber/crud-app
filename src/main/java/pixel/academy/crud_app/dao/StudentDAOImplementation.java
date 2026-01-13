@@ -68,7 +68,7 @@ public class StudentDAOImplementation implements StudentDAO {
         // retrieve the student from the database
         Student theStudent = entityManager.find(Student.class, id);
 
-        //  delete the student
+        // delete the student
         entityManager.remove(theStudent);
 
     }
@@ -76,7 +76,7 @@ public class StudentDAOImplementation implements StudentDAO {
     @Transactional
     public int deleteAll() {
         int numRowsDeleted = entityManager.createQuery("DELETE FROM Student").executeUpdate();
-        return 0;
+        return numRowsDeleted;
     }
 
 
